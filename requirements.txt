@@ -1,0 +1,4 @@
+pycocotools
+sagemaker==2.15.0 
+urllib3==1.25.11
+argparse

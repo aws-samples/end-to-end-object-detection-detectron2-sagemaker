@@ -1,0 +1,3 @@
+pycocotools
+git+https://github.com/facebookresearch/fvcore
+git+https://github.com/facebookresearch/detectron2.git@e883afb9afe2b5196b7cba7485583a1d063a9991
