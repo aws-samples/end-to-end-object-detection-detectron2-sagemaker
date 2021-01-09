@@ -84,7 +84,7 @@ def _setup(sm_args):
     
     dataset_val_name = "cb_val"
     _register_dataset(dataset_val_name, "val.json", "val")
-    
+
     # Build config file
     cfg = get_cfg() # retrieve baseline config: https://github.com/facebookresearch/detectron2/blob/master/detectron2/config/defaults.py
     cfg.merge_from_file(config_file_path) # merge defaults with provided config file
@@ -133,7 +133,6 @@ def _opts_to_list(opts):
         list_opts = re.split('\s+', opts)
         return list_opts
     return ""
-
 
 def get_training_world():
 
