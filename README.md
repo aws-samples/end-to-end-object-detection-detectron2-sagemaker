@@ -69,7 +69,7 @@ aws-cli/1.18.137 Python/3.6.7 Linux/4.14.193-113.317.amzn1.x86_64 botocore/1.17.
 8. Run `d2_inference.ipynb` to deploy a SageMaker Endpoint with Detectron2 
 
 ## Bring Your Own `model.pth` Workflow to Deploy
-1. Have your `model.pth` and `config.yaml` available locally 
+1. Have your `model.pth` available locally 
 2. create a `code` directory and copy and paste all files in from the `source` directory. Your directory should now look like this: 
 ``` 
 .
@@ -78,15 +78,41 @@ aws-cli/1.18.137 Python/3.6.7 Linux/4.14.193-113.317.amzn1.x86_64 botocore/1.17.
 │   ├── inference.py
 │   ├── requirements.txt
 │   └── train.py
-├── config.yaml
 └── model.pth
 ```
-3. Compress the directory into a `tar.gz` file and upload it to s3 
+3. Compress the directory into a `tar.gz` file.
 ```
 $ tar -zcvf model.tar.gz *
+```
+Alternatively, you may use Python to tar and gzip the directory -
+
+```python
+import tarfile
+with tarfile.open('model.tar.gz', "w:gz") as tar:
+    tar.add('model.pth')
+    tar.add('code')
+```
+
+4. upload compressed directory to s3 
+```
 $ aws s3 cp model.tar.gz s3://__PATH__TO__WHERE__YOU__WANT__TO__UPLOAD__TO/
 ```
-4. Run `d2_inference.ipynb` to deploy a SageMaker Endpoint with the `model_url` set to the path you uploaded to in step 3^. 
+
+5. Run `d2_inference.ipynb` to deploy a SageMaker Endpoint with the `model_url` and `source_dir` set to the path you uploaded to in step 3^. 
+
+NOTE: Ensure that files in 'model.tar.gz' follow the naming conventions: your inference script, model and requirements file *must* be called 'inference.py', 'model.pth' and 'requirements.txt' respectively.
+
+## Artefacts 
+The training jobs produces 2 major artefacts: _model.tar.gz_ and _sourcedir.tar.gz_:
+
+* _model.tar.gz_ contains the 'model.pth' file. Uploaded to the S3 key specified for```output_path``` in `d2_train.ipynb`.
+* _sourcedir.tar.gz_ contains all source code/files under the directory specified for ```source_dir``` in `d2_train.ipynb`. Uploaded to 's3://output_bucket/job-name/' by default.
+
+The PyTorch and PyTorchModel classes repack 'model.tar.gz' to include the inference script (and related files), as long as the framework_version is set to 1.2 or higher. In `d2_train.ipynb`, you may optionally set ```code_location```, should you desire to upload the code artefacts to a different path in the S3 bucket.
+
+In the case of **Bring-Your-Own-Model (BYOM)**, when deploying the model using `d2_inference.ipynb`, **both** `source_dir` and `model_data` *must* point to the S3 path of the 'model.tar.gz' file.
+
+Consult the [SageMaker SDK documentation](https://sagemaker.readthedocs.io/en/stable/frameworks/pytorch/index.html) for further details on how to use PyTorch with SageMaker.
 
 ## Deployment and Inference Benchmarks 
 | Instance Type  | Cost per hour ($) | Deployment Time (sec) | Avg time per image (sec) | Avg cost per 1000 images ($) |

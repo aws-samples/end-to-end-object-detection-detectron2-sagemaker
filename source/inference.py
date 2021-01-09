@@ -41,8 +41,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler(sys.stdout))
 
-# TODO: Maybe put this from SM env vars 
-MODEL_EXTRACT_LOC = '/opt/ml/model/' # extract model.tar.gz from s3 into this location
 
 def _get_predictor(config_path, model_path):
     
