@@ -120,4 +120,3 @@ Consult the [SageMaker SDK documentation](https://sagemaker.readthedocs.io/en/st
 | ml.p2.xlarge   | $1.125            | 672                   | 0.607                    | $0.19                        |
 | ml.g4dn.xlarge | $0.736            | 622                   | 0.217                    | $0.04                        |
 | ml.p3.2xlarge  | $3.825            | 623                   | 0.133                    | $0.12                        |
-
