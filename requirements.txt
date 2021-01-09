@@ -1,6 +1,5 @@
 pycocotools
-# sagemaker==2.15.0
 sagemaker==2.23.2 
 urllib3==1.25.11
 argparse
-sagemaker[local]
+

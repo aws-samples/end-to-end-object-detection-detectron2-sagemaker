@@ -85,14 +85,6 @@ def _setup(sm_args):
     dataset_val_name = "cb_val"
     _register_dataset(dataset_val_name, "val.json", "val")
 
-    '''
-    Alternative: The training and validation data are
-    available in the following channels. 
-    '''
-    training_data_loc =  os.environ["SM_CHANNEL_TRAINING"]
-    validation_data_loc =  os.environ["SM_CHANNEL_VALIDATION"]
-    '''Only relevant if you passed the dictionary object while calling fit()'''
-    
     # Build config file
     cfg = get_cfg() # retrieve baseline config: https://github.com/facebookresearch/detectron2/blob/master/detectron2/config/defaults.py
     cfg.merge_from_file(config_file_path) # merge defaults with provided config file
