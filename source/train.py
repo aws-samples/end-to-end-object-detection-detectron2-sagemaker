@@ -142,7 +142,6 @@ def _opts_to_list(opts):
         return list_opts
     return ""
 
-
 def get_training_world():
 
     """
