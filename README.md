@@ -2,7 +2,7 @@
 
 Author: Calvin Wang (AWS) 
 
-This repository provides an end to end walkthrough on taking a labeled dataset(s) from SageMaker GroundTruth and training and ultimately deploying a Detectron2 model for Object Detection. Furthermore, I've also provided docs on how to [deploy a trained model via AWS CDK](./endpoint_deploy_cdk.md) as well  
+This repository provides an end to end walkthrough on taking a labeled dataset(s) from SageMaker GroundTruth and training and ultimately deploying a Detectron2 model for Object Detection. Furthermore, I've also provided docs on how to [deploy a trained model via AWS CDK](./endpoint_deploy_cdk.md) as well.  
 
 ## Requirements 
 ```bash 
@@ -70,7 +70,7 @@ aws-cli/1.18.137 Python/3.6.7 Linux/4.14.193-113.317.amzn1.x86_64 botocore/1.17.
 
 ## Bring Your Own `model.pth` Workflow to Deploy
 1. Have your `model.pth` and `config.yaml` available locally 
-2. create a `code` directory and copy and paste all files in from the `source` directory. Your directory should now look like this: 
+2. Create a `code` directory and copy and paste all files in from the `source` directory. Your directory should now look like this: 
 ``` 
 .
 ├── code
