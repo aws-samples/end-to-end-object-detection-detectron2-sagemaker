@@ -2,7 +2,7 @@
 
 Author: Calvin Wang (AWS) 
 
-This repository provides an end to end walkthrough on taking a labeled dataset(s) from SageMaker GroundTruth and training and ultimately deploying a Detectron2 model for Object Detection. As a cherry on top, I've also provided docs on how to [deploy a trained model via AWS CDK](./endpoint_deploy_cdk.md) as well :) 
+This repository provides an end to end walkthrough on taking a labeled dataset(s) from SageMaker GroundTruth and training and ultimately deploying a Detectron2 model for Object Detection. Furthermore, I've also provided docs on how to [deploy a trained model via AWS CDK](./endpoint_deploy_cdk.md) as well  
 
 ## Requirements 
 ```bash 
